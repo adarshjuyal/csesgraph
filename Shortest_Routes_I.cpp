@@ -1,3 +1,4 @@
+//dijkstra algo(greedy)->from one source to all other nodes
 #include <iostream>
 #include <bits/stdc++.h>
 #include <queue>
