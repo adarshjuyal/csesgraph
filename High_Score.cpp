@@ -2,15 +2,9 @@
               --> works for -ve cycle
               propagte and relax  */
 
-#include <iostream>
-#include <vector>
-#include <climits>
+#include <bits/stdc++.h>
+#define endl "\n"
 using namespace std;
-
-#define ll long long
-#define in cin
-#define out cout
-#define el endl
 #define int long long int
 
 const int INF = 1e17;
@@ -68,24 +62,45 @@ int32_t main()
     cin >> n >> m;
     dist.resize(n + 1);
     edges.resize(m);
-    for (int i = 0; i < m; ++i)
-    {
-        struct triplet inp;
-        cin >> inp.first >> inp.second >> inp.third;
-        inp.third *= -1;
-        edges[i] = inp;
-    }
+   
+        for (int i = 0; i < m; ++i)
+        {
+            struct triplet inp;
+            cin >> inp.first >> inp.second >> inp.third;
+            inp.third *= -1;
+            edges[i] = inp;
+        }
 
-    for (int i = 2; i <= n; ++i)
-    {
-        dist[i] = INF;
-    }
+        for (int i = 2; i <= n; ++i)
+        {
+            dist[i] = INF;
+        }
 
-    bellman_ford();
-    if (dist[n] == NINF)
-    {
-        cout << -1 << endl;
-        return 0;
+        bellman_ford();
+        if (n == 1)
+
+        {
+            bool check = false;
+            for (auto e : edges)
+            {
+                if (e.third < 0)
+                {
+                    check = true;
+                    break;
+                }
+            }
+            if (!check)
+            {
+                cout << 0 << endl;
+            }
+            else
+                cout << -1 << endl;
+        }
+        else{        if (dist[n] == NINF)
+        {
+            cout << -1 << endl;
+            return 0;
+        }
+   
+        cout << dist[n] * (-1) << endl;}
     }
-    cout << dist[n] * (-1) << endl;
-}
